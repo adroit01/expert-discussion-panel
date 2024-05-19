@@ -1,13 +1,13 @@
-#This is an Expert Disucssion Panel powered by Large Language Models.
+# This is an Expert Disucssion Panel powered by Large Language Models.
 
 Highlights of this Application
 ##It works on concept that if different LLM can be made to sit in a disucssion panel
 then their answers and quality of response can judge their respoective performance.
 
-##Currently following LLMs are integrated and available for use.
+## Currently following LLMs are integrated and available for use.
 
 
-##Running the application
+## Running the application
 download the git repository
 
 1. cd expert-discssion-panel
