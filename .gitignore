@@ -2,3 +2,5 @@
 .env
 .vscode/
 /experts/__pycache__/*.pyc
+/discussion/__pycache__/*.pyc
+/utils/__pycache__/*.pyc
