@@ -229,8 +229,8 @@ class SummarizerExpert(Expert):
     def format_instructions(self):
         topic_schema = ResponseSchema(name="topic",description="It is topic of discussion",type="str")
         summary_schema = ResponseSchema(name="summary",description="It is summary of discussion",type="str")
-        action_item_present_schema = ResponseSchema(name="isActionItemPresent",
-                                                    description="True if any specific actio item is present in summary of discussion",type="bool")
+        action_item_present_schema = ResponseSchema(name="actionItemPresent",
+                                                    description="True if any specific action item is present in summary of discussion",type="bool")
         action_item_schema = ResponseSchema(name="actionItem",description="sepcific action Items",type="object")
 
         ouput_parser = StructuredOutputParser(response_schemas=[topic_schema,summary_schema,action_item_present_schema,action_item_schema])

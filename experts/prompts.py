@@ -30,7 +30,7 @@ Discussion: {discussion_statements}
 summary can involve action item if any and finally following information can be extracted out from response
 topic: topic of discussion
 sumamry: summary of discussion
-isActionItemPresent: true if any action item present else false
+actionItemPresent: true if any action item present else false
 actionItem: if isActionItemPresent is true else null
 Format the output in json format with following keys
 topic,summary,actionItemPresent, actionItem having keys: specific, measurable, achievable, relevant and timeBound."""

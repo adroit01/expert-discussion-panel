@@ -1,6 +1,4 @@
-.env
-*/.venv
 .venv
-.vscode
+.env
 .vscode/
-config/__pycache__/** */
+/experts/__pycache__/*.pyc
