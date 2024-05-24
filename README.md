@@ -1,5 +1,5 @@
 # Expert Discussion Panel
-This is an Expert Disucssion Panel powered by Large Language Models.
+This is an Expert Discussion Panel powered by Large Language Models.
 
 ## Highlights of this Application
 It is based on concept that if different Experts powered by different LLMs are made to sit in a discussion panel discussing among each other on a topic then they can bring out different and pioneer perspective and new opinion to solve the problem underlying the topic under debate.
