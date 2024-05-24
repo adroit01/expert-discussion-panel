@@ -6,7 +6,7 @@ fairscale==0.4.13
 torch==2.2.2
 accelerate==0.20.3
 transformers==4.38.2
-gradio==4.29.0
+gradio==4.31.5
 gpt4all==2.0.2
 huggingface_hub==0.21.3
 pypdf==3.17.3
