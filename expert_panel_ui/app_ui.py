@@ -115,7 +115,7 @@ with gr.Blocks(title="Expert Discussion Panel",css = "footer {display:none !impo
                               "Meta-llama3-8B-Instruct",
                               "human"],
                     label="Powered by LLM")
-                verbose_slider = gr.Slider(1,250,value=100,step=5,interactive=True,label="Verbosity")
+                verbose_slider = gr.Slider(1,1001,value=100,step=5,interactive=True,label="Verbosity")
             with gr.Row():
                 specialization_inp = gr.Textbox(lines=3,label="Specialization",placeholder="Specialization",scale=1)
             with gr.Row():
@@ -145,15 +145,19 @@ with gr.Blocks(title="Expert Discussion Panel",css = "footer {display:none !impo
                 [
                 "Amit",
                 "Software Development Expert",
-                """ You have worked on various software development projects. you have a very good understanding of computer science
-                command in java and python as programming language. A machine learning enthusiast and Generative Artificial Intelligence Expert""",
+                """ You have worked on various software development projects. you have a very good understanding of computer science command in java and python as programming language. A machine learning enthusiast and Generative Artificial Intelligence Expert""",
                 "Google's Gemini Pro"
                 ],
                 [
                 "Sumit",
                 "Software Development Expert",
-                """ You have worked on various software development projects. you have a very good understanding of computer science
-                command in java and python as programming language. A machine learning enthusiast and Generative Artificial Intelligence Expert""",
+                """ You have worked on various software development projects. you have a very good understanding of computer science command in java and python as programming language. A machine learning enthusiast and Generative Artificial Intelligence Expert""",
+                "Google's Gemini Pro"
+                ],
+                [
+                "Niraj",
+                "Travel Planner",
+                """You have a huge experience of planning a travel. worked in various company as Travel planner and manager and guide. Visited almost every places in India.""",
                 "Google's Gemini Pro"
                 ],
                 [
@@ -192,10 +196,8 @@ with gr.Blocks(title="Expert Discussion Panel",css = "footer {display:none !impo
             "Concept of Blackhole",
             "Plan a 3 days trip to Goa for a family of 3 members(husband,wife and daughter)",
             "How to have a healthy relation between husband and wife",
-            """Solve this puzzle: there are 90 camels and 9 Hooks, tie all 90 camels in 9 hooks such that each 
-            hook has only odd numnber of camels""",
-            """Let us all play a game. You need to name a color. Do not repeat the color which is already been said
-            by other player. if repeated you loose the game"""],
+            """Solve this puzzle: there are 90 camels and 9 Hooks, tie all 90 camels in 9 hooks such that each hook has only odd numnber of camels""",
+            """Let us all play a game. You need to name a color. Do not repeat the color which is already been said by other player. if repeated you loose the game"""],
         inputs=[discussion_topic_inp_txt])
         with gr.Row():
             btn_start = gr.Button("Start",scale=1)
@@ -217,7 +219,7 @@ with gr.Blocks(title="Expert Discussion Panel",css = "footer {display:none !impo
         flag_btn = gr.Button("Save the Discussion")
         btn_start.click(fn=start_discussion,inputs=[discussion_topic_inp_txt,ePanel],outputs=summary_output)
         btn_start.click(fn=init_discussion_tab,inputs=exp_holder,outputs=[expert_tag_dataframe,summary_output])
-        btn_start.click(fn=update_response,inputs=exp_holder,outputs=[expert_tag_dataframe],every=0.01,trigger_mode="always_last")
+        btn_start.click(fn=update_response,inputs=exp_holder,outputs=[expert_tag_dataframe],every=0.1,trigger_mode="multiple")
         btn_stop.click(fn=stop_discussion,inputs=ePanel,outputs=None)
         discussion_round_slider.change(fn=set_discussion_round,inputs=[discussion_round_slider,ePanel],outputs=None)
         speaker_speed_slider.change(fn=set_speaker_speed,inputs=[exp_holder,speaker_speed_slider],outputs=None)
@@ -227,7 +229,7 @@ with gr.Blocks(title="Expert Discussion Panel",css = "footer {display:none !impo
                        preprocess=False)
         
     with gr.TabItem("Knowledge Management") as knowledgebase_panel:
-        gr.Markdown(""" The feature to create knowledgebase which can be referred by Exper is under development""")
+        gr.Markdown(""" The feature to create knowledgebase which can be referred by Expert is under development""")
     
     btn_add_expert.click(fn=add_expert,
                     inputs=[name_inp,role_inp,specialization_inp,poweredByLLM,lookup_check_box,create_knowledge_base_check_box,doc_directory,verbose_slider

@@ -1,7 +1,7 @@
 .venv
 .env
 .vscode/
-/experts/__pycache__/*.pyc
-/discussion/__pycache__/*.pyc
-/utils/__pycache__/*.pyc
-/config/__pycache__/*.pyc
+/experts/__pycache__
+/discussion/**/__pycache__
+/utils/**/__pycache__
+/config/**/__pycache__
