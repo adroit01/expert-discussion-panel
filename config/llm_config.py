@@ -18,7 +18,7 @@ embedding_model = OpenAIEmbeddings(model="text-embedding-ada-002")
 
 #Google Gemini
 genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
-llm_gemini_pro = ChatGoogleGenerativeAI(model="gemini-pro")
+llm_gemini_pro = ChatGoogleGenerativeAI(model="gemini-pro",convert_system_message_to_human=True)
 
 #llm for Sumamrization
 #llm_for_summary = ChatGoogleGenerativeAI(model="gemini-pro")

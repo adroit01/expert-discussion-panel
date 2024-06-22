@@ -6,6 +6,7 @@ from experts.expert import DetailerExpert,SummarizerExpert,Status
 import config.llm_config as config
 from langchain.prompts.prompt import PromptTemplate
 import uuid
+import config.speech_config as speech_config
 
 class ExpertDiscussion:
 
@@ -102,4 +103,7 @@ class ExpertDiscussion:
             discussion_summary = self.summarizer.summarize(topic,discussion_responses)
         print("*****Summarization Ends Here*****")
         return discussion_summary
+    
+    def speech_to_text(self)-> str:
+        return speech_config.speech_to_text()
 

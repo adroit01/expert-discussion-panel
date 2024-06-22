@@ -14,6 +14,7 @@ import time
 from utils import common_utils
 import config.llm_config as config
 import requests
+import config.speech_config as speech
 
 langchain.debug = True
 
@@ -30,7 +31,7 @@ class Expert:
         self.name = name
         self.role = role
         self.status = Status.Idle
-        self.speaking_lag = 0.02
+        self.speaking_lag = 0.05
         self.verbosity_level = verbosity_level
         self.specialization= specialization
         self.llm_type = llm_type
@@ -186,7 +187,7 @@ class DetailerExpert(Expert):
 
             self.status = Status.Speaking
             self.set_other_experts_status(expert_list,Status.Listening)
-
+            speech.speech_synthesizer.speak_text_async(response.replace("*",''))
             for sub_response in self.slow_echo(response,stop):
                 self.responses[index - 1] = sub_response
             #self.responses[index -1] = response
@@ -220,7 +221,7 @@ class SummarizerExpert(Expert):
         output_formatting_dict = self.format_instructions()
         llm_chain = LLMChain(llm=self.llm,prompt=self.prompt)
         summary = llm_chain.predict(topic=topic,discussion_statements=discussion_statements,
-                                    format_instructions = output_formatting_dict["format_instructions"])
+                                    format_instructions = output_formatting_dict["format_instructions"],convert_system_message_to_human=True)
         print(summary)
         response_dict = output_formatting_dict["parser"].parse(summary)
         self.responses.append(response_dict)
