@@ -3,7 +3,6 @@ from dotenv import load_dotenv
 from langchain_openai import ChatOpenAI,OpenAIEmbeddings
 from langchain_community.llms.gpt4all import GPT4All
 import google.generativeai as genai
-from langchain_core.callbacks import StreamingStdOutCallbackHandler
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_community.llms import Ollama
 
