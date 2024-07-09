@@ -41,7 +41,7 @@ speech_config.speech_synthesis_voice_name = "en-US-RyanMultilingualNeural"
 #stream_config = speech_sdk.audio.AudioOutputConfig(use_default_speaker=True)
 speech_synthesizer = speech_sdk.SpeechSynthesizer(speech_config)
 
-speech_synthesizer.synthesis_started.connect(lambda evt: print("Synthesis started"))
+speech_synthesizer.synthesis_started.connect(lambda evt: print("Speech Synthesis started"))
 speech_synthesizer.synthesizing.connect(synthesis_callback)
 speech_synthesizer.synthesis_completed.connect(lambda evt: print("Synthesis completed"))
 

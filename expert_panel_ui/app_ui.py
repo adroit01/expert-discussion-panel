@@ -98,7 +98,7 @@ def start_discussion(topic,exp_discssion_panel: ExpertDiscussion):
 
 callback = gr.CSVLogger()
 
-def speech_to_text_ui(audio, exp_discssion_panel:ExpertDiscussion):
+def speech_to_text_ui(exp_discssion_panel:ExpertDiscussion):
     text = exp_discssion_panel.speech_to_text()
     return text
 
@@ -190,7 +190,7 @@ with gr.Blocks(title="Expert Discussion Panel",css = "footer {display:none !impo
     with gr.TabItem("Expert Discussion Panel") as discussion_panel:
         with gr.Row():
             discussion_topic_inp_txt = gr.Textbox(lines=3,label="Discussion Topic", scale=2)
-            audio_capture = gr.Audio(sources="microphone",label="Set the Topic",container=False,format="mp3",show_label=True)
+            audio_capture = gr.Audio(sources="microphone",label="Set the Topic",container=False,format="mp3",show_label=True,visible=False)
             discussion_round_slider = gr.Slider(1,10,value=1,step=1,interactive=True,label="Discussion Rounds")
             speaker_speed_slider = gr.Slider(1,10,value=1,step=1,interactive=True,label="Speaker Speed")
 
@@ -222,7 +222,7 @@ with gr.Blocks(title="Expert Discussion Panel",css = "footer {display:none !impo
         with gr.Row() as summary:
             summary_output = gr.Textbox(lines=10,label="Expert Disucssion Summary")
         flag_btn = gr.Button("Save the Discussion")
-        audio_capture.start_recording(fn=speech_to_text_ui,inputs=[audio_capture,ePanel],outputs=[discussion_topic_inp_txt])
+        audio_capture.start_recording(fn=speech_to_text_ui,inputs=[ePanel],outputs=[discussion_topic_inp_txt])
         btn_start.click(fn=start_discussion,inputs=[discussion_topic_inp_txt,ePanel],outputs=summary_output)
         btn_start.click(fn=init_discussion_tab,inputs=exp_holder,outputs=[expert_tag_dataframe,summary_output])
         btn_start.click(fn=update_response,inputs=exp_holder,outputs=[expert_tag_dataframe],trigger_mode="multiple",every=0.1)

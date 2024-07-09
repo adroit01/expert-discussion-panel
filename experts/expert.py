@@ -14,7 +14,7 @@ import time
 from utils import common_utils
 import config.llm_config as config
 import requests
-import config.speech_config as speech
+#import config.speech_config as speech
 
 langchain.debug = True
 
@@ -187,10 +187,9 @@ class DetailerExpert(Expert):
 
             self.status = Status.Speaking
             self.set_other_experts_status(expert_list,Status.Listening)
-            speech.speech_synthesizer.speak_text_async(response.replace("*",''))
+            #speech.speech_synthesizer.speak_text_async(response.replace("*",''))
             for sub_response in self.slow_echo(response,stop):
                 self.responses[index - 1] = sub_response
-            #self.responses[index -1] = response
             print("Responses of this Expert",self.responses)   
         except Exception as e:
             print(f"Exception occurred: {e}")

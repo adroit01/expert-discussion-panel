@@ -24,7 +24,7 @@ llm_gemini_pro = ChatGoogleGenerativeAI(model="gemini-pro",convert_system_messag
 #llm_for_summary = ChatGoogleGenerativeAI(model="gemini-pro")
 
 #llama
-callbacks = [StreamingStdOutCallbackHandler()]
+#callbacks = [StreamingStdOutCallbackHandler()]
 #llm_llama_2_chat_7b_q4_0 = GPT4All(model="llama_7B_chat_q4_0_model_path",device="cpu",callbacks=callbacks,verbose=True)
 meta_llm_llama3_8B_Instruct = Ollama(model="llama3")
 llm_types = {
