@@ -71,6 +71,7 @@ def update_response(exp_holder):
             statements.append(f"*** Round:{j+1} statement::{exp_holder[i].responses[j]}")
         exp_group = [exp_details,exp_status,exp_avg_response_time,statements]
         dataframe.append(exp_group)
+    dataframe.append([None,None,None,None])
     return dataframe
 
 def set_discussion_round(round: int, exp_discussion_panel:ExpertDiscussion):
@@ -213,7 +214,7 @@ with gr.Blocks(title="Expert Discussion Panel",css = "footer {display:none !impo
         datatype=["str","str","str","str"],
         interactive=True,
         label="Experts Suggestions",
-        column_widths=["150px","85px","75px","800px"],
+        column_widths=["150px","85px","75px","800px"]
         )
 
         with gr.Row() as human_response:
