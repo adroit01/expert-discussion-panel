@@ -19,7 +19,7 @@ class ExpertDiscussion:
                                           You are very good at summzarization of the duscussion and able to capture 
                                           very clear understanding of subject matter once you go through the discssion text,
                                           you manke out the summary with great articualtion and details""",
-                                          "Google's Gemini Pro", config.llm_gemini_pro)
+                                          "Google's Gemini Pro", config.llm_for_summary)
         
         self.stop: bool = False
 

@@ -115,9 +115,10 @@ with gr.Blocks(title="Expert Discussion Panel",css = "footer {display:none !impo
                 name_inp = gr.Textbox(lines=1,label="Name",placeholder="Name")
                 role_inp = gr.Textbox(lines=1,label="Role",placeholder="Role")
                 poweredByLLM = gr.Dropdown(
-                    choices=["OpenAI-GPT-3.5 Turbo",
-                              "Google's Gemini Pro",
-                              "Meta-llama3-8B-Instruct",
+                    choices=["Google's Gemini Pro",
+                             "OpenAI-GPT-3.5 Turbo",
+                             "OpenAI-GPT-4o-mini",
+                             "Meta-llama3-8B-Instruct",
                               "human"],
                     label="Powered by LLM")
                 verbose_slider = gr.Slider(1,1001,value=100,step=5,interactive=True,label="Verbosity")

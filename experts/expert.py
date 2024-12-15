@@ -55,7 +55,6 @@ class Expert:
         
         if self.llm_type != "human" :
             if self.llm_type == "Google's Gemini Pro":
-                print("It's Gemini Pro")
                 self.conversation_llm_chain = self.llm
             else:
 
