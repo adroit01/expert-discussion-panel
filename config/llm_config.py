@@ -18,6 +18,7 @@ embedding_model = OpenAIEmbeddings(model="text-embedding-ada-002")
 #Google Gemini
 genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
 llm_gemini_pro = ChatGoogleGenerativeAI(model="gemini-pro",convert_system_message_to_human=True)
+llm_gemini_2_0_flash = ChatGoogleGenerativeAI(model="gemini-2.0-flash-exp",convert_system_message_to_human=True)
 
 #llm for Sumamrization
 llm_for_summary = ChatGoogleGenerativeAI(model="gemini-pro",convert_system_message_to_human=True)
@@ -31,5 +32,6 @@ llm_types = {
     "OpenAI-GPT-4o-mini" : llm_openai_4o_mini,
     "Meta-llama3-8B-Instruct": meta_llm_llama3_8B_Instruct,
     "Google's Gemini Pro": llm_gemini_pro,
+    "Google's Gemini 2.0 Flash": llm_gemini_2_0_flash,
     "human": "Human"
 }

@@ -116,6 +116,7 @@ with gr.Blocks(title="Expert Discussion Panel",css = "footer {display:none !impo
                 role_inp = gr.Textbox(lines=1,label="Role",placeholder="Role")
                 poweredByLLM = gr.Dropdown(
                     choices=["Google's Gemini Pro",
+                             "Google's Gemini 2.0 Flash",
                              "OpenAI-GPT-3.5 Turbo",
                              "OpenAI-GPT-4o-mini",
                              "Meta-llama3-8B-Instruct",

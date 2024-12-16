@@ -22,7 +22,8 @@ for m in genai.list_models():
     if 'generateContent' in m.supported_generation_methods:
         print(m.name)
 
-llm = ChatGoogleGenerativeAI(model="gemini-pro",convert_system_message_to_human=True)
+#llm = ChatGoogleGenerativeAI(model="gemini-pro",convert_system_message_to_human=True)
+llm = ChatGoogleGenerativeAI(model="gemini-2.0-flash-exp",convert_system_message_to_human=True)
 response  = llm.invoke("Who is President of India")
 print(response.content)
 
