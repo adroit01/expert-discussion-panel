@@ -27,11 +27,16 @@ llm_for_summary = ChatGoogleGenerativeAI(model="gemini-pro",convert_system_messa
 #callbacks = [StreamingStdOutCallbackHandler()]
 #llm_llama_2_chat_7b_q4_0 = GPT4All(model="llama_7B_chat_q4_0_model_path",device="cpu",callbacks=callbacks,verbose=True)
 meta_llm_llama3_8B_Instruct = Ollama(model="llama3")
+
+#deepseek
+llm_deepseek_r1_1_5b = Ollama(model="deepseek-r1:1.5b")
+
 llm_types = {
     "OpenAI-GPT-3.5 Turbo": llm_openai,
     "OpenAI-GPT-4o-mini" : llm_openai_4o_mini,
     "Meta-llama3-8B-Instruct": meta_llm_llama3_8B_Instruct,
     "Google's Gemini Pro": llm_gemini_pro,
     "Google's Gemini 2.0 Flash": llm_gemini_2_0_flash,
+    "Deepseek r1 1.5b": llm_deepseek_r1_1_5b,
     "human": "Human"
 }

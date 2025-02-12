@@ -120,6 +120,7 @@ with gr.Blocks(title="Expert Discussion Panel",css = "footer {display:none !impo
                              "OpenAI-GPT-3.5 Turbo",
                              "OpenAI-GPT-4o-mini",
                              "Meta-llama3-8B-Instruct",
+                             "Deepseek r1 1.5b",
                               "human"],
                     label="Powered by LLM")
                 verbose_slider = gr.Slider(1,1001,value=100,step=5,interactive=True,label="Verbosity")
