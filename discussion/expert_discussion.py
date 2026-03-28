@@ -95,12 +95,16 @@ class ExpertDiscussion:
         print("*****Discussion Ends Here*****")
         return discussion_statements
 
-    def summarization(self,topic):
+    def summarization(self, topic):
         print("*****Summarization Starts Here*****")
+        discussion_summary = "No discussion responses were generated."
         discussion_responses = self.start_discussion(topic)
-        #discussion_summary = "Not Summarized"
-        if(discussion_responses and len(discussion_responses) > 0):
-            discussion_summary = self.summarizer.summarize(topic,discussion_responses)
+        if discussion_responses and len(discussion_responses) > 0:
+            try:
+                discussion_summary = self.summarizer.summarize(topic, discussion_responses)
+            except Exception as e:
+                print(f"Summarization error: {e}")
+                discussion_summary = f"⚠️ Summary generation failed: {str(e)}"
         print("*****Summarization Ends Here*****")
         return discussion_summary
     

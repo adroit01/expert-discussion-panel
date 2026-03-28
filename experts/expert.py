@@ -215,15 +215,22 @@ class SummarizerExpert(Expert):
             
         )
 
-    def summarize(self,topic,discussion_statements: dict)->str:
-        output_formatting_dict = self.format_instructions()
-        llm_chain = LLMChain(llm=self.llm,prompt=self.prompt)
-        summary = llm_chain.predict(topic=topic,discussion_statements=discussion_statements,
-                                    format_instructions = output_formatting_dict["format_instructions"],convert_system_message_to_human=True)
+    def summarize(self, topic, discussion_statements: dict) -> str:
+        import json
+        llm_chain = LLMChain(llm=self.llm, prompt=self.prompt)
+        # Only pass variables that exist in the template: {topic} and {discussion_statements}
+        summary = llm_chain.predict(topic=topic, discussion_statements=str(discussion_statements))
         print(summary)
-        response_dict = output_formatting_dict["parser"].parse(summary)
-        self.responses.append(response_dict)
-        return response_dict
+        try:
+            output_formatting_dict = self.format_instructions()
+            response_dict = output_formatting_dict["parser"].parse(summary)
+            self.responses.append(response_dict)
+            # Convert dict to formatted JSON string for the Textbox output
+            return json.dumps(response_dict, indent=2, ensure_ascii=False)
+        except Exception as parse_err:
+            print(f"Summary parse error (returning raw text): {parse_err}")
+            self.responses.append(summary)
+            return summary
     
     def format_instructions(self):
         topic_schema = ResponseSchema(name="topic",description="It is topic of discussion",type="str")

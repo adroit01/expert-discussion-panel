@@ -24,8 +24,6 @@ llm_gemini_pro = ChatGoogleGenerativeAI(model="gemini-pro",convert_system_messag
 llm_gemini_2_0_flash = ChatGoogleGenerativeAI(model="gemini-2.0-flash",convert_system_message_to_human=True)
 llm_gemini_2_5_flash = ChatGoogleGenerativeAI(model="gemini-2.5-flash",convert_system_message_to_human=True)
 
-#llm for Sumamrization
-llm_for_summary = ChatGoogleGenerativeAI(model="gemini-2.5-flash",convert_system_message_to_human=True)
 
 #llama
 #callbacks = [StreamingStdOutCallbackHandler()]
@@ -39,6 +37,10 @@ llm_deepseek_r1_8b = OllamaLLM(model="deepseek-r1:8b")
 #Anthropic Claude
 llm_claude_sonnet = ChatAnthropic(model="claude-sonnet-4-6",temperature=0.7)
 llm_claude_haiku = ChatAnthropic(model="claude-haiku-4-5-20251001",temperature=0.7)
+
+#llm for Sumamrization
+#llm_for_summary = ChatGoogleGenerativeAI(model="gemini-2.0-flash",convert_system_message_to_human=True)
+llm_for_summary = llm_claude_sonnet
 
 llm_types = {
     "OpenAI-GPT-3.5 Turbo": llm_openai,

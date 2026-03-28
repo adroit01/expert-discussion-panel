@@ -54,7 +54,9 @@ def init_discussion_tab(exp_holder):
         expert_details_for_tag = [f"{exp_holder[i].name} a {exp_holder[i].role} powered by {exp_holder[i].llm_type}",exp_holder[i].status,None,""] 
         expert_group_details_for_tag.append(expert_details_for_tag)
     
-    return [expert_group_details_for_tag, ""]
+    # Only return expert dataframe — do NOT clear summary_output here,
+    # as start_discussion may not have finished yet and will overwrite it
+    return expert_group_details_for_tag
 
 def update_response(exp_holder):
 
@@ -118,8 +120,12 @@ with gr.Blocks(title="Expert Discussion Panel") as demo:
                     choices=["Google's Gemini Pro",
                              "Google's Gemini 2.0 Flash",
                              "Google's Gemini 2.5 Flash",
+                             "Anthropic Claude Sonnet 4.6",
+                             "Anthropic Claude Haiku 4.5",
                              "OpenAI-GPT-3.5 Turbo",
                              "OpenAI-GPT-4o-mini",
+                             "OpenAI-GPT-4o",
+                             "OpenAI-GPT-4.1-mini",
                              "Meta-llama3-8B-Instruct",
                              "Deepseek r1 1.5b",
                              "Deepseek r1 8b",
@@ -230,7 +236,7 @@ with gr.Blocks(title="Expert Discussion Panel") as demo:
         flag_btn = gr.Button("Save the Discussion")
         audio_capture.start_recording(fn=speech_to_text_ui,inputs=[ePanel],outputs=[discussion_topic_inp_txt])
         btn_start.click(fn=start_discussion,inputs=[discussion_topic_inp_txt,ePanel],outputs=summary_output)
-        btn_start.click(fn=init_discussion_tab,inputs=exp_holder,outputs=[expert_tag_dataframe,summary_output])
+        btn_start.click(fn=init_discussion_tab,inputs=exp_holder,outputs=[expert_tag_dataframe])
         btn_start.click(fn=update_response,inputs=exp_holder,outputs=[expert_tag_dataframe])
         # Gradio 6: use gr.Timer instead of every= on click for real-time polling
         response_timer = gr.Timer(0.1)
