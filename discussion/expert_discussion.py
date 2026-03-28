@@ -1,10 +1,10 @@
 import copy
 import time
-from langchain.schema import HumanMessage
+from langchain_core.messages import HumanMessage
 from experts import prompts
-from experts.expert import DetailerExpert,SummarizerExpert,Status
+from experts.expert import DetailerExpert, SummarizerExpert, Status
 import config.llm_config as config
-from langchain.prompts.prompt import PromptTemplate
+from langchain_core.prompts import PromptTemplate
 import uuid
 #import config.speech_config as speech_config
 

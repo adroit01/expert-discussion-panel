@@ -103,7 +103,7 @@ def speech_to_text_ui(exp_discssion_panel:ExpertDiscussion):
     text = exp_discssion_panel.speech_to_text()
     return text
 
-with gr.Blocks(title="Expert Discussion Panel",css = "footer {display:none !important}") as demo:
+with gr.Blocks(title="Expert Discussion Panel") as demo:
     gr.Markdown("""
                # Expert Discussion Panel!
                 Powered by network of Opena and Proprietory LLMs """)
@@ -117,10 +117,12 @@ with gr.Blocks(title="Expert Discussion Panel",css = "footer {display:none !impo
                 poweredByLLM = gr.Dropdown(
                     choices=["Google's Gemini Pro",
                              "Google's Gemini 2.0 Flash",
+                             "Google's Gemini 2.5 Flash",
                              "OpenAI-GPT-3.5 Turbo",
                              "OpenAI-GPT-4o-mini",
                              "Meta-llama3-8B-Instruct",
                              "Deepseek r1 1.5b",
+                             "Deepseek r1 8b",
                               "human"],
                     label="Powered by LLM")
                 verbose_slider = gr.Slider(1,1001,value=100,step=5,interactive=True,label="Verbosity")
@@ -229,7 +231,10 @@ with gr.Blocks(title="Expert Discussion Panel",css = "footer {display:none !impo
         audio_capture.start_recording(fn=speech_to_text_ui,inputs=[ePanel],outputs=[discussion_topic_inp_txt])
         btn_start.click(fn=start_discussion,inputs=[discussion_topic_inp_txt,ePanel],outputs=summary_output)
         btn_start.click(fn=init_discussion_tab,inputs=exp_holder,outputs=[expert_tag_dataframe,summary_output])
-        btn_start.click(fn=update_response,inputs=exp_holder,outputs=[expert_tag_dataframe],trigger_mode="multiple",every=0.1)
+        btn_start.click(fn=update_response,inputs=exp_holder,outputs=[expert_tag_dataframe])
+        # Gradio 6: use gr.Timer instead of every= on click for real-time polling
+        response_timer = gr.Timer(0.1)
+        response_timer.tick(fn=update_response,inputs=exp_holder,outputs=[expert_tag_dataframe])
         btn_stop.click(fn=stop_discussion,inputs=ePanel,outputs=None)
         discussion_round_slider.change(fn=set_discussion_round,inputs=[discussion_round_slider,ePanel],outputs=None)
         speaker_speed_slider.change(fn=set_speaker_speed,inputs=[exp_holder,speaker_speed_slider],outputs=None)
@@ -253,7 +258,7 @@ with gr.Blocks(title="Expert Discussion Panel",css = "footer {display:none !impo
                                 outputs=[expert_details_dataframe,expert_tag_dataframe])
 
 #demo.queue().launch(share=False,server_name="0.0.0.0",server_port=7860,auth=[("admin","password"),"anchor","enter123"],auth_message="Please enter login details")    
-demo.queue().launch(share=False,server_name="0.0.0.0",server_port=7860)
+demo.queue().launch(share=False,server_name="0.0.0.0",server_port=7860,css="footer {display:none !important}")
 
 
                 

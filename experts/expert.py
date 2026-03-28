@@ -1,14 +1,14 @@
 import json
 import os.path
 import chromadb
-from langchain.schema.messages import HumanMessage,SystemMessage
-from langchain.vectorstores.chroma import Chroma
+from langchain_core.messages import HumanMessage, SystemMessage
+from langchain_chroma import Chroma
 from experts import prompts
 import langchain
-from langchain.prompts import PromptTemplate,SystemMessagePromptTemplate, ChatPromptTemplate, MessagesPlaceholder,HumanMessagePromptTemplate
-from langchain.chains import LLMChain, ConversationalRetrievalChain
-from langchain.memory import ConversationBufferMemory
-from langchain.output_parsers import StructuredOutputParser,ResponseSchema
+from langchain_core.prompts import PromptTemplate, SystemMessagePromptTemplate, ChatPromptTemplate, MessagesPlaceholder, HumanMessagePromptTemplate
+from langchain_classic.chains import LLMChain, ConversationalRetrievalChain
+from langchain_classic.memory import ConversationBufferMemory
+from langchain_classic.output_parsers import StructuredOutputParser, ResponseSchema
 from enum import StrEnum
 import time
 from utils import common_utils
@@ -62,7 +62,7 @@ class Expert:
                     self.conversation_llm_chain = LLMChain(llm = self.llm, prompt = self.prompt, verbose=True, memory=self.conversation_buffer_memory)
                 
                 else:
-                    client = chromadb.HttpClient(host='localhost',port="8000")
+                    client = chromadb.HttpClient(host='localhost', port=8000)
                     vectordb = Chroma(embedding_function=config.embedding_model, client = client, collection_name=self.collection_name)
                     self.conversation_llm_chain = ConversationalRetrievalChain.from_llm(llm=self.llm,
                                                                                         retriever=vectordb.as_retriever(),

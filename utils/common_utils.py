@@ -1,9 +1,9 @@
 import yaml
-from langchain.agents.agent_toolkits.openapi.spec import reduce_openapi_spec
-from langchain.chains import ConversationalRetrievalChain
-from langchain.prompts import PromptTemplate
+from langchain_community.agent_toolkits.openapi.spec import reduce_openapi_spec
+from langchain_classic.chains import ConversationalRetrievalChain
+from langchain_core.prompts import PromptTemplate
 from pypdf import PdfReader
-from langchain.vectorstores.chroma import Chroma
+from langchain_chroma import Chroma
 import config.llm_config as config
 import chromadb
 
@@ -24,7 +24,7 @@ def is_yaml_file(file_path)-> bool:
 
 
 def query_using_db(quer: str):
-    client = chromadb.HttpClient(host="localhost",port="8000")
+    client = chromadb.HttpClient(host="localhost", port=8000)
     CONDENSE_QUESTION_PROMPT = PromptTemplate.from_template("""
     Given the following conversation and a follow up question, rephrase the follow up question to be a standalone question""")
     vectordb = Chroma(embedding_function=config.embedding_model,client=client)
@@ -63,7 +63,7 @@ def load_and_embed_data(file_path: str,client,collection_name: str, file_type:st
         print(f"Added documents in collection:{collection_name}")
 
 def print_collection(collection_name: str):
-     client = chromadb.HttpClient(host="localhost",port="8000")    
+     client = chromadb.HttpClient(host="localhost", port=8000)    
      print(client.list_collections()) 
      collection = client.get_collection(collection_name)
      print(f"collection details: {collection}")
@@ -71,7 +71,7 @@ def print_collection(collection_name: str):
      print(f"First document:{collection.peak(0)}")
     
 def delete_collection(collection_name):
-    client = chromadb.HttpClient(host="localhost",port="8000") 
+    client = chromadb.HttpClient(host="localhost", port=8000) 
     client.delete_collection(collection_name)
     print(f"collection {collection_name} deleted")
 
