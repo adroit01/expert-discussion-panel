@@ -117,9 +117,10 @@ with gr.Blocks(title="Expert Discussion Panel") as demo:
                 name_inp = gr.Textbox(lines=1,label="Name",placeholder="Name")
                 role_inp = gr.Textbox(lines=1,label="Role",placeholder="Role")
                 poweredByLLM = gr.Dropdown(
-                    choices=["Google's Gemini Pro",
-                             "Google's Gemini 2.0 Flash",
-                             "Google's Gemini 2.5 Flash",
+                    choices=["Google's Gemini 2.5 Flash",
+                             "Google's Gemini 2.5 Flash Lite",
+                             "Google's Gemini 3 Flash (Preview)",
+                             "Google's Gemini 3.1 Flash Lite (Preview)",
                              "Anthropic Claude Sonnet 4.6",
                              "Anthropic Claude Haiku 4.5",
                              "OpenAI-GPT-3.5 Turbo",
@@ -162,37 +163,37 @@ with gr.Blocks(title="Expert Discussion Panel") as demo:
                 "Amit",
                 "Software Development Expert",
                 """ You have worked on various software development projects. you have a very good understanding of computer science command in java and python as programming language. A machine learning enthusiast and Generative Artificial Intelligence Expert""",
-                "Google's Gemini Pro"
+                "Google's Gemini 3.1 Flash Lite"
                 ],
                 [
                 "Sumit",
                 "Software Development Expert",
                 """ You have worked on various software development projects. you have a very good understanding of computer science command in java and python as programming language. A machine learning enthusiast and Generative Artificial Intelligence Expert""",
-                "Google's Gemini Pro"
+                "Google's Gemini 3.1 Flash Lite"
                 ],
                 [
                 "Niraj",
                 "Travel Planner",
                 """You have a huge experience of planning a travel. worked in various company as Travel planner and manager and guide. Visited almost every places in India.""",
-                "Google's Gemini Pro"
+                "Google's Gemini 3.1 Flash Lite"
                 ],
                 [
                 "Sanjay",
                 "Player1",
                 """Amateur Player""",
-                "Google's Gemini Pro"
+                "Google's Gemini 3.1 Flash Lite"
                 ],
                 [
                 "Raghav",
                 "Player2",
                 """Amateur Player""",
-                "Google's Gemini Pro"
+                "Google's Gemini 3.1 Flash Lite"
                 ],
                  [
                 "Raj",
                 "Player3",
                 """Amateur Player""",
-                "Google's Gemini Pro"
+                "Google's Gemini 3.1 Flash Lite"
                 ]
             ],
             inputs=[name_inp,role_inp,specialization_inp,poweredByLLM,exp_holder,ePanel],

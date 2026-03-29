@@ -20,9 +20,12 @@ embedding_model = OpenAIEmbeddings(model="text-embedding-ada-002")
 
 #Google Gemini
 genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
-llm_gemini_pro = ChatGoogleGenerativeAI(model="gemini-pro",convert_system_message_to_human=True)
-llm_gemini_2_0_flash = ChatGoogleGenerativeAI(model="gemini-2.0-flash",convert_system_message_to_human=True)
+# Stable models
 llm_gemini_2_5_flash = ChatGoogleGenerativeAI(model="gemini-2.5-flash",convert_system_message_to_human=True)
+llm_gemini_2_5_flash_lite = ChatGoogleGenerativeAI(model="gemini-2.5-flash-lite",convert_system_message_to_human=True)
+# Preview models (Gemini 3 series)
+llm_gemini_3_flash = ChatGoogleGenerativeAI(model="gemini-3-flash-preview",convert_system_message_to_human=True)
+llm_gemini_3_1_flash_lite = ChatGoogleGenerativeAI(model="gemini-3.1-flash-lite-preview",convert_system_message_to_human=True)
 
 
 #llama
@@ -48,9 +51,10 @@ llm_types = {
     "OpenAI-GPT-4o": llm_openai_4o,
     "OpenAI-GPT-4.1-mini": llm_openai_4_1_mini,
     "Meta-llama3-8B-Instruct": meta_llm_llama3_8B_Instruct,
-    "Google's Gemini Pro": llm_gemini_pro,
-    "Google's Gemini 2.0 Flash": llm_gemini_2_0_flash,
     "Google's Gemini 2.5 Flash": llm_gemini_2_5_flash,
+    "Google's Gemini 2.5 Flash Lite": llm_gemini_2_5_flash_lite,
+    "Google's Gemini 3 Flash (Preview)": llm_gemini_3_flash,
+    "Google's Gemini 3.1 Flash Lite (Preview)": llm_gemini_3_1_flash_lite,
     "Anthropic Claude Sonnet 4.6": llm_claude_sonnet,
     "Anthropic Claude Haiku 4.5": llm_claude_haiku,
     "Deepseek r1 1.5b": llm_deepseek_r1_1_5b,
