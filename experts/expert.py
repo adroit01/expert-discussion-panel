@@ -97,7 +97,8 @@ class Expert:
 def workaround_gemini_call(query: str):
     print("Gemini:",query)
     payload = {"contents": [{"parts":[{"text":f"{query}"}]}]}
-    response = requests.post("https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-pro-latest:generateContent?key=AIzaSyAk4RyIN7fIi1f2loyDC6JAkZBCoKUr2kA"
+    google_api_key = os.getenv("GOOGLE_API_KEY")
+    response = requests.post(f"https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-pro-latest:generateContent?key={google_api_key}"
                              ,headers={"Content-Type": "application/json"},
                              json=payload)
     json_response = json.loads(response.text)
